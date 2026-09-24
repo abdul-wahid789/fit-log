@@ -1,16 +1,36 @@
+'use client'
+
 import Link from 'next/link';
 import React from 'react';
 import logo from "@/assets/logo.png"
 import Image from 'next/image';
-
+import { usePathname } from 'next/navigation';
 const Navbar = () => {
-    const links = <>
-        <li><Link href={`/`}>Workouts</Link></li>
-        <li><Link href={`/my-plan`}>My Plan</Link></li>
 
+    const pathname = usePathname()
+
+
+    const links = <>
+        <li>
+            <Link
+                href="/"
+                className={pathname === '/' ? 'text-accent bg-accent/10 rounded-2xl' : ''}
+            >
+                Workouts
+            </Link>
+        </li>
+        <li>
+            <Link
+                href="/my-plan"
+                className={pathname === '/my-plan' ? 'text-accent bg-accent/10 rounded-2xl' : ''}
+                // className={ 'active'}
+            >
+                My Plan
+            </Link>
+        </li>
     </>
     return (
-        <nav className='border-b border-base-300'>
+        <nav className='border-b border-base-300 mb-10'>
 
             <div className="container mx-auto navbar shadow-sm">
                 <div className="navbar-start">
@@ -36,13 +56,13 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end space-x-3">
                     <Link href={`/my-plan`} className="">Plan
-                    <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
+                        <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
 
                     </Link>
 
 
                     <Link href={`/my-plan`} className="">Saved
-                    <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
+                        <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
 
                     </Link>
 

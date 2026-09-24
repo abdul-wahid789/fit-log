@@ -1,6 +1,7 @@
 import React from 'react';
 import bannerImg from "@/assets/banner.png"
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () => {
     return (
@@ -14,7 +15,8 @@ const Hero = () => {
                         EVERY SET.</h1>
                     <p>FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
                         into today&apos;s plan, and watch the week&apos;s work add up.</p>
-                    <button className='btn btn-accent w-1/2'>BROWSE WORKOUTS</button>
+                    <a href={"#library"} className="btn btn-accent w-1/2">BROWSE WORKOUTS</a>
+                    
                 </div>
                 <Image className='w-[25%]' src={bannerImg} alt="banner image"></Image>
             </section>

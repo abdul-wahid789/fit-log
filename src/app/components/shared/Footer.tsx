@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Footer = () => {
     return (
-        <footer className='border-t border-base-300 py-10'>
+        <footer className='border-t border-base-300 py-10 mt-10'>
             <div className='flex justify-between container mx-auto'>
                 <Link href={`/`} className="btn btn-ghost text-xl ">
                     <Image src={logo} alt="logo"></Image>

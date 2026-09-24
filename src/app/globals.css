@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
-
 @plugin "daisyui/theme" {
   name: "fit-theme";
   default: true;
@@ -38,4 +37,8 @@
 
 h1{
   color: white;
+}
+
+html {
+  scroll-behavior: smooth;
 }

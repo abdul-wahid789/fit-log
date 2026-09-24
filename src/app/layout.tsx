@@ -1,41 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
-import Hero from "./components/Hero";
+import { ToastContainer } from "react-toastify";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Fit Log",
   description: "Fitness activity tracker web app.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }:
+  { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      data-theme="fit-theme"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="fit-log"
+      className={`${oswald.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <header className="">
-          <Navbar />
-          <Hero></Hero>
+      <body className={`${oswald.className} min-h-full flex flex-col`}>
+        <header>
+          <Navbar></Navbar>
         </header>
         {children}
-        <Footer></Footer>
+        <Footer />
+        <ToastContainer />
       </body>
     </html>
   );
 }
- 
+

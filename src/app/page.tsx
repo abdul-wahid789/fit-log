@@ -1,9 +1,11 @@
-import Image from "next/image";
+import Hero from "./components/index/Hero";
+import Exercise from "./components/index/Workouts";
 
 export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <main>
+      <Hero/>
+      <Exercise/>
+    </main>
   );
 }
