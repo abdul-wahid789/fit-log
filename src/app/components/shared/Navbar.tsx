@@ -16,7 +16,7 @@ const Navbar = () => {
         <li>
             <Link
                 href="/"
-                className={pathname === '/' ? 'text-accent bg-accent/10 rounded-2xl' : ''}
+                className={`hover:text-accent ${pathname === '/' ? 'text-accent bg-accent/10 rounded-2xl' : ''}`}
             >
                 Workouts
             </Link>
@@ -24,9 +24,7 @@ const Navbar = () => {
         <li>
             <Link
                 href="/my-plan"
-                className={pathname === '/my-plan' ? 'text-accent bg-accent/10 rounded-2xl' : ''}
-            // className={ 'active'}
-            >
+                className={`hover:text-accent/80 ${pathname === '/my-plan' ? 'text-accent bg-accent/10 rounded-2xl' : ''}`} >
                 My Plan
             </Link>
         </li>
@@ -64,7 +62,7 @@ const Navbar = () => {
 
 
                     <Link href={`/my-plan`} className="">Saved
-                    <SaveCount />
+                        <SaveCount />
 
                     </Link>
 

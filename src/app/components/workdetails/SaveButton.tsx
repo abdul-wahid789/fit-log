@@ -1,11 +1,12 @@
 "use client"
 
+import { IWorkout } from '@/app/types/workout';
 import { WorkoutContext } from '@/context/WorkoutContext';
 import React, { useContext } from 'react';
 import { CiBookmark } from 'react-icons/ci';
 import { Bounce, toast } from 'react-toastify';
 
-const SaveButton = ({ workout }) => {
+const SaveButton = ({ workout }: { workout: IWorkout }) => {
 
     const { saveWorkouts, setSaveWorkouts } = useContext(WorkoutContext)
     const handelSaveClick = () => {
@@ -25,6 +26,17 @@ const SaveButton = ({ workout }) => {
         }
         else {
             setSaveWorkouts([...saveWorkouts, workout])
+            toast.success(`${workout.name} Add to Save`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     }
 

@@ -1,17 +1,13 @@
+
 import PlanButton from '@/app/components/workdetails/PlanButton';
 import SaveButton from '@/app/components/workdetails/SaveButton';
 import WorkData from '@/app/components/workdetails/WorkData';
-
-import { IWorkout } from '@/app/types/workout';
 
 import { getWorkoutDetails } from '@/lib/workout';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
-import { CiBookmark } from 'react-icons/ci';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import { MdAddTask } from 'react-icons/md';
 
 const WorkOutDetails = async ({ params }) => {
 
@@ -64,10 +60,8 @@ const WorkOutDetails = async ({ params }) => {
                     </div>
                 </div>
             )
-
-            
-
             }
+
         </div>
     )
 };

@@ -1,8 +1,6 @@
 import React from 'react';
-import ExerciseCard from '../shared/WorkoutCard';
 import { getWorkouts } from '@/lib/workout';
-import { Bounce, toast } from 'react-toastify';
-import ErrorToast from '../shared/ErrorToast';
+import WorkoutCard from '../shared/WorkoutCard';
 
 const Workouts = async () => {
     const { workouts, error } = await getWorkouts()
@@ -14,7 +12,7 @@ const Workouts = async () => {
             </div>
             <div className='grid grid-cols-3 grid-rows-4 gap-4 mt-10'>
                 {
-                    !error ? workouts.slice(0, 12).map(workout => <ExerciseCard key={workout.id}
+                    !error ? workouts.slice(0, 12).map(workout => <WorkoutCard key={workout.id}
                         workout={workout} />)
                         : <div role="alert" className="alert alert-error bg-error/15 border-error/40 text-error">
                             <span>Something went wrong! Could not load workouts.</span>

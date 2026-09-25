@@ -1,11 +1,11 @@
 import Hero from "./components/index/Hero";
-import Exercise from "./components/index/Workouts";
+import Workouts from "./components/index/Workouts";
 
 export default function Home() {
   return (
     <main>
       <Hero/>
-      <Exercise/>
+      <Workouts/>
     </main>
   );
 }

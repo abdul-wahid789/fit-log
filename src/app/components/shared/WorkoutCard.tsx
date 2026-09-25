@@ -42,8 +42,8 @@ const WorkoutCard = ({ workout }: props) => {
                     <div className='divider'></div>
                     <div className='text-sm flex space-x-3 font-light'>
                         <p className='flex items-center gap-1'><FaClock />{workout.duration} min</p>
-                        <p className='flex items-center gap-1'><FaFire />{workout.caloriesBurned} min</p>
-                        <p className='flex items-center gap-1'><CiStar />{workout.rating} min</p>
+                        <p className='flex items-center gap-1'><FaFire />{workout.caloriesBurned} kcal</p>
+                        <p className='flex items-center gap-1'><CiStar />{workout.rating}</p>
 
                     </div>
                 </div>
