@@ -1,19 +1,29 @@
+import PlanButton from '@/app/components/workdetails/PlanButton';
+import SaveButton from '@/app/components/workdetails/SaveButton';
 import WorkData from '@/app/components/workdetails/WorkData';
+
 import { IWorkout } from '@/app/types/workout';
+
 import { getWorkoutDetails } from '@/lib/workout';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+
+
 import { CiBookmark } from 'react-icons/ci';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import { MdAddTask } from 'react-icons/md';
 
 const WorkOutDetails = async ({ params }) => {
+
     const { workoutid } = await params
     const { workout } = await getWorkoutDetails(workoutid)
-    const workDatas = ["equipment", "difficulty", "sets", "reps", "duration", "caloriesBurned", "rating"]
+
     return (
-        <div>
+        <div className='container mx-auto'>
+            <Link href={"/"}><button className='btn btn-accent items-center my-5'><IoMdArrowRoundBack />Workout Libray</button></Link>
             {workout && (
-                <div className='flex container mx-auto gap-10'>
+                <div className='flex gap-10'>
+
                     <div className='w-1/2 rounded-2xl overflow-hidden relative'>
                         <Image src={workout.image} alt={workout.name}
                             fill
@@ -26,7 +36,7 @@ const WorkOutDetails = async ({ params }) => {
                             {(workout.muscleGroups).map((muscle, i) =>
                                 <p className='px-5 badge-accent badge' key={i}>{muscle}</p>)}
                         </div>
-                        <div className='bg-base-300 rounded-lg border my-5 overflow-hidden'>
+                        <div className='bg-base-300 rounded-lg border my-5 overflow-hidden divide-y'>
 
                             <WorkData name="EQUIPMENT" value={`${workout.equipment}`} />
                             <WorkData name="DIFFICULTY" value={`${workout.difficulty}`} />
@@ -47,13 +57,16 @@ const WorkOutDetails = async ({ params }) => {
                         </div>
 
                         <div className='flex gap-2'>
-                            <button className='btn btn-accent'><MdAddTask />Add to today&apos;s plan</button>
-                            <button className='btn btn-outline'><CiBookmark />Save for later</button>
+                            <PlanButton workout={workout} />
+                            <SaveButton workout={workout} />
                         </div>
 
                     </div>
                 </div>
             )
+
+            
+
             }
         </div>
     )

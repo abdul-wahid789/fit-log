@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
 import { ToastContainer } from "react-toastify";
+import WorkoutProvier from "@/context/WorkoutContext";
+import Toast from "./components/shared/Toast";
 
 
 const oswald = Oswald({
@@ -23,15 +25,13 @@ export default function RootLayout({ children }:
     <html
       lang="en"
       data-theme="fit-log"
+      data-scroll-behavior="smooth"
       className={`${oswald.variable} h-full antialiased`}
     >
       <body className={`${oswald.className} min-h-full flex flex-col`}>
-        <header>
-          <Navbar></Navbar>
-        </header>
-        {children}
-        <Footer />
-        <ToastContainer />
+        <Toast>
+            {children}
+        </Toast>
       </body>
     </html>
   );

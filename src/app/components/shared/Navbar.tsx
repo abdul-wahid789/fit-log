@@ -5,6 +5,8 @@ import React from 'react';
 import logo from "@/assets/logo.png"
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import PlanCount from './PlanCount';
+import SaveCount from './SaveCount';
 const Navbar = () => {
 
     const pathname = usePathname()
@@ -23,7 +25,7 @@ const Navbar = () => {
             <Link
                 href="/my-plan"
                 className={pathname === '/my-plan' ? 'text-accent bg-accent/10 rounded-2xl' : ''}
-                // className={ 'active'}
+            // className={ 'active'}
             >
                 My Plan
             </Link>
@@ -56,13 +58,13 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end space-x-3">
                     <Link href={`/my-plan`} className="">Plan
-                        <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
+                        <PlanCount />
 
                     </Link>
 
 
                     <Link href={`/my-plan`} className="">Saved
-                        <span className='ml-1 bg-accent text-base-100 rounded-full px-1'>0</span>
+                    <SaveCount />
 
                     </Link>
 
