@@ -30,7 +30,7 @@ const Navbar = () => {
         </li>
     </>
     return (
-        <nav className='border-b border-base-300 mb-10'>
+        <nav className='border-b border-base-300'>
 
             <div className="container mx-auto navbar shadow-sm">
                 <div className="navbar-start">

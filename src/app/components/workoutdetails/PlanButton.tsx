@@ -2,13 +2,16 @@
 
 import { IWorkout } from '@/app/types/workout';
 import { WorkoutContext } from '@/context/WorkoutContext';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import React, { useContext } from 'react';
 import { MdAddTask } from 'react-icons/md';
 import { Bounce, toast } from 'react-toastify';
 
-const PlanButton = ({ workout }: {workout: IWorkout}) => {
+const PlanButton = ({ workout }: { workout: IWorkout }) => {
 
     const { planWorkouts, setPlanWorkouts } = useContext(WorkoutContext)
+    const [ , setPlanLocalData] = useLocalStorage('planWorkouts')
+
     const handelPlanClick = () => {
         if (planWorkouts.some(planWorkout => planWorkout.id === workout.id)) {
             toast.warn(`${workout.name} Already in Plan`, {
@@ -24,7 +27,13 @@ const PlanButton = ({ workout }: {workout: IWorkout}) => {
             });
         }
         else {
-            setPlanWorkouts([...planWorkouts, workout])
+
+            const newWorkouts = [...planWorkouts, workout]
+
+            setPlanWorkouts(newWorkouts)
+
+            setPlanLocalData(newWorkouts)
+
             toast.success(`${workout.name} Add to Plan`, {
                 position: "top-right",
                 autoClose: 5000,

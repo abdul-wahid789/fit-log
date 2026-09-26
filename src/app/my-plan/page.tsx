@@ -5,15 +5,14 @@ import PlanCard from '../components/my-plan/PlanCard';
 import { WorkoutContext } from '@/context/WorkoutContext';
 import { IWorkoutContext } from '../types/workoutContext';
 import Link from 'next/link';
+import PlanListLoading from '../components/loading/my-plan/PlanListLoading';
 
 const MyPlanPage = () => {
     const [sortValue, setSortValue] = useState<string>("Duration")
     const value = useContext<IWorkoutContext>(WorkoutContext)
 
-
     const handelTabClick = () => {
         value.setIsPlanActive(!value.isPlanActive)
-
     }
 
     const workouts = value.isPlanActive ? value.planWorkouts : value.saveWorkouts
@@ -35,8 +34,12 @@ const MyPlanPage = () => {
         return 0;
     });
 
+
+
+
+
     return (
-        <section className="container mx-auto">
+        <section className="w-[90%] md:container mx-auto mt-10">
             <h1 className='text-4xl font-bold'>MY PLAN</h1>
             <p>Cap of five lifts for today. Finish them, then load more.</p>
             <div className='bg-base-300 rounded-2xl overflow-hidden border p-5 mt-5 *:w-full divide-x text-center flex justify-between'>
@@ -55,9 +58,9 @@ const MyPlanPage = () => {
             </div>
 
 
-            {/* data short  */}
+            {/* toggle button  */}
 
-            <div className='flex items-center justify-between'>
+            <div className='flex items-center justify-between flex-col md:flex-row mb-10'>
 
                 <div className='bg-base-300 w-fit flex gap-3 items-center text-primary-content rounded-2xl px-2 py-2 my-10 border-base-300 border'>
                     <button onClick={handelTabClick} className={value.isPlanActive ? "btn btn-accent border rounded-l-2xl transition duration-150" : "cursor-pointer"}>
@@ -83,28 +86,27 @@ const MyPlanPage = () => {
 
 
 
-
             </div>
 
             {/* PlanList  */}
 
             <div className='space-y-3'>
-                {
-                    sortedWorkouts.length ? (
-                        sortedWorkouts.map(workout => <PlanCard key={workout.id}
-                            workout={workout} />)
-                    ) :
-                        <div className='bg-base-300 rounded-xl text-center w-fit p-5 space-y-4 mx-auto'>
-                            <h1 className='text-2xl font-bold'>NOTHING HERE YET</h1>
-                            <p>Browse the library and add a lift to get today moving</p>
-                            <Link href="/">
-                                <button className='btn btn-accent'>Go to workouts</button>
-                            </Link>
-                        </div>
-                }
-                {
+               {!value.isLoaded ? (
+                    <PlanListLoading />
+                ) :   sortedWorkouts.length ? (
+                    sortedWorkouts.map(workout => (
+                        <PlanCard key={workout.id} workout={workout} />
+                    ))
+                ) : (
+                    <div className='bg-base-300 rounded-xl text-center w-fit p-5 space-y-4 mx-auto'>
+                        <h1 className='text-2xl font-bold'>NOTHING HERE YET</h1>
+                        <p>Browse the library and add a lift to get today moving</p>
+                        <Link href="/">
+                            <button className='btn btn-accent'>Go to workouts</button>
+                        </Link>
+                    </div>
+                )}
 
-                }
             </div>
 
         </section>

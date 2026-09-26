@@ -2,6 +2,7 @@
 
 import { IWorkout } from '@/app/types/workout';
 import { WorkoutContext } from '@/context/WorkoutContext';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import React, { useContext } from 'react';
 import { CiBookmark } from 'react-icons/ci';
 import { Bounce, toast } from 'react-toastify';
@@ -9,6 +10,8 @@ import { Bounce, toast } from 'react-toastify';
 const SaveButton = ({ workout }: { workout: IWorkout }) => {
 
     const { saveWorkouts, setSaveWorkouts } = useContext(WorkoutContext)
+    const [, setSaveLocalData] = useLocalStorage('saveWorkouts')
+
     const handelSaveClick = () => {
 
         if (saveWorkouts.some(saveWorkout => saveWorkout.id === workout.id)) {
@@ -25,7 +28,11 @@ const SaveButton = ({ workout }: { workout: IWorkout }) => {
             });
         }
         else {
-            setSaveWorkouts([...saveWorkouts, workout])
+
+            const newWorkouts = [...saveWorkouts, workout]
+            setSaveWorkouts(newWorkouts)
+            setSaveLocalData(newWorkouts)
+            
             toast.success(`${workout.name} Add to Save`, {
                 position: "top-right",
                 autoClose: 5000,

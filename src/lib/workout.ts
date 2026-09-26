@@ -1,6 +1,6 @@
 import { IWorkout } from "@/app/types/workout"
 
-const BASE_URL = "https://api.abcz.workers.dev/api/fitlog"
+const BASE_URL = "https://api.api-store.workers.dev/api/fitlog"
 
 
 export const getWorkouts = async (): Promise<{ workouts: IWorkout[]; error: string | null }> => {

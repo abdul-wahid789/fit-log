@@ -1,7 +1,7 @@
 
-import PlanButton from '@/app/components/workdetails/PlanButton';
-import SaveButton from '@/app/components/workdetails/SaveButton';
-import WorkData from '@/app/components/workdetails/WorkData';
+import PlanButton from '@/app/components/workoutdetails/PlanButton';
+import SaveButton from '@/app/components/workoutdetails/SaveButton';
+import WorkData from '@/app/components/workoutdetails/WorkData';
 
 import { getWorkoutDetails } from '@/lib/workout';
 import Image from 'next/image';
@@ -9,20 +9,25 @@ import Link from 'next/link';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
-const WorkOutDetails = async ({ params }) => {
+type WorkOutDetailsProps = {
+    params: Promise<{ workoutid: string }>;
+};
+
+const WorkOutDetails = async ({ params }: WorkOutDetailsProps) => {
 
     const { workoutid } = await params
     const { workout } = await getWorkoutDetails(workoutid)
 
     return (
-        <div className='container mx-auto'>
+        <div className='w-[90%] md:container mx-auto'>
             <Link href={"/"}><button className='btn btn-accent items-center my-5'><IoMdArrowRoundBack />Workout Libray</button></Link>
             {workout && (
-                <div className='flex gap-10'>
+                <div className='flex gap-10 flex-col md:flex-row'>
 
-                    <div className='w-1/2 rounded-2xl overflow-hidden relative'>
+                    <div className='w-full h-80 md:h-auto md:w-1/2 rounded-2xl overflow-hidden relative'>
                         <Image src={workout.image} alt={workout.name}
                             fill
+
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     </div>
                     <div className='space-y-2'>
@@ -52,7 +57,7 @@ const WorkOutDetails = async ({ params }) => {
                             </ol>
                         </div>
 
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 justify-around md:justify-start'>
                             <PlanButton workout={workout} />
                             <SaveButton workout={workout} />
                         </div>
@@ -63,6 +68,7 @@ const WorkOutDetails = async ({ params }) => {
             }
 
         </div>
+
     )
 };
 

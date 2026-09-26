@@ -2,6 +2,7 @@
 import { IWorkout } from '@/app/types/workout';
 import { IWorkoutContext } from '@/app/types/workoutContext';
 import { WorkoutContext } from '@/context/WorkoutContext';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -9,12 +10,16 @@ import { MdDone } from 'react-icons/md';
 import { Bounce, toast } from 'react-toastify';
 
 const ButtonAction = ({ workout }: { workout: IWorkout }) => {
+
     const value = useContext<IWorkoutContext>(WorkoutContext)
+    const [, setPlanLocalData] = useLocalStorage('planWorkouts')
+    const [, setSaveLocalData] = useLocalStorage('saveWorkouts')
 
     const handelMarkClick = () => {
 
         const workouts = value.planWorkouts.filter(planW => planW.id !== workout.id)
         value.setPlanWorkouts(workouts)
+        setPlanLocalData(workouts)
 
         toast.success(`${workout.name} Done`, {
             position: "top-right",
@@ -34,10 +39,12 @@ const ButtonAction = ({ workout }: { workout: IWorkout }) => {
         if (value.isPlanActive) {
             workouts = value.planWorkouts.filter(planW => planW.id !== workout.id)
             value.setPlanWorkouts(workouts)
+            setPlanLocalData(workouts)
         }
         else {
             workouts = value.saveWorkouts.filter(planW => planW.id !== workout.id)
             value.setSaveWorkouts(workouts)
+            setSaveLocalData(workouts)
         }
 
         toast.error(`${workout.name} Removed`, {
