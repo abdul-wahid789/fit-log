@@ -2,11 +2,9 @@ import React from 'react';
 
 const WorkoutSuspense = () => {
     return (
-        <>
+        <div className='w-[90%] lg:w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-4 gap-4 mt-10'>
             <div className='rounded-xl bg-base-300 overflow-hidden
-                            border border-transparent
-                            hover:ring-1 hover:ring-accent cursor-pointer
-                            hover:transition hover:duration-150'
+                            border border-transparent'
             >
                 <div className="skeleton relative w-full h-44 overflow-hidden">
                 </div>
@@ -69,7 +67,7 @@ const WorkoutSuspense = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

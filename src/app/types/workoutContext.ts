@@ -6,5 +6,6 @@ export interface IWorkoutContext {
     saveWorkouts: IWorkout[], setSaveWorkouts: Dispatch<SetStateAction<IWorkout[]>>,
     doneWorkouts: IWorkout[], setDoneWorkouts: Dispatch<SetStateAction<IWorkout[]>>,
     isPlanActive: boolean, setIsPlanActive: Dispatch<SetStateAction<boolean>>,
-    isLoaded: boolean
+    isLoaded: boolean,
+    searchValue: string, setSearchValue: Dispatch<SetStateAction<string>>
 }

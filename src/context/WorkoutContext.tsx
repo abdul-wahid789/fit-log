@@ -12,7 +12,8 @@ export const WorkoutContext = createContext<IWorkoutContext>({
     saveWorkouts: [], setSaveWorkouts: () => { },
     doneWorkouts: [], setDoneWorkouts: () => { },
     isPlanActive: true, setIsPlanActive: () => { },
-    isLoaded: false
+    isLoaded: false,
+    searchValue: "", setSearchValue: () => { }
 })
 
 
@@ -20,6 +21,7 @@ const WorkoutProvier = ({ children }: { children: ReactNode }) => {
 
     const [planWorkoutsLocal] = useLocalStorage('planWorkouts')
     const [saveWorkoutsLocal] = useLocalStorage('saveWorkouts')
+    const [searchValue, setSearchValue] = useState<string>("")
 
     const [planWorkouts, setPlanWorkouts] = useState<IWorkout[]>([])
     const [saveWorkouts, setSaveWorkouts] = useState<IWorkout[]>([])
@@ -33,17 +35,16 @@ const WorkoutProvier = ({ children }: { children: ReactNode }) => {
         saveWorkouts, setSaveWorkouts,
         doneWorkouts, setDoneWorkouts,
         isPlanActive, setIsPlanActive,
-        isLoaded
+        isLoaded,
+        searchValue, setSearchValue
     }
 
     useEffect(() => {
-
         setTimeout(() => {
             setPlanWorkouts(planWorkoutsLocal)
             setSaveWorkouts(saveWorkoutsLocal)
             setIsLoaded(true)
         }, 0)
-
     }, [planWorkoutsLocal, saveWorkoutsLocal])
 
     return (

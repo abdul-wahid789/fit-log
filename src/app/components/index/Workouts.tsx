@@ -9,11 +9,11 @@ const Workouts = async () => {
                 <h1 className='text-2xl font-bold'>THE LIBRARY</h1>
                 <p>Twelve lifts covering every major muscle group.</p>
             </div>
-            <div className='w-[90%] lg:w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-4 gap-4 mt-10'>
+
                 <Suspense fallback={<WorkoutSuspense />}>
                     <WorkoutList />
                 </Suspense>
-            </div>
+            
 
         </section>
     );
