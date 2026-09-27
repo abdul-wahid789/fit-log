@@ -5,7 +5,7 @@ import { WorkoutContext } from '@/context/WorkoutContext';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import React, { useContext } from 'react';
 import { CiBookmark } from 'react-icons/ci';
-import { Bounce, toast } from 'react-toastify';
+import { showSuccessToast, showWarnToast } from '../shared/toast/Toast';
 
 const SaveButton = ({ workout }: { workout: IWorkout }) => {
 
@@ -15,35 +15,19 @@ const SaveButton = ({ workout }: { workout: IWorkout }) => {
     const handelSaveClick = () => {
 
         if (saveWorkouts.some(saveWorkout => saveWorkout.id === workout.id)) {
-            toast.warn(`${workout.name} Already Saved`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Bounce,
-            });
+
+            showWarnToast(`${workout.name} Already Saved`)
+
+
         }
         else {
 
             const newWorkouts = [...saveWorkouts, workout]
             setSaveWorkouts(newWorkouts)
             setSaveLocalData(newWorkouts)
-            
-            toast.success(`${workout.name} Add to Save`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            });
+
+            showSuccessToast(`${workout.name} Add to Save`)
+
         }
     }
 

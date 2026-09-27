@@ -16,7 +16,7 @@ const Hero = () => {
                     <a href={"#library"} className="btn btn-accent w-full lg:w-1/2">BROWSE WORKOUTS</a>
 
                 </div>
-                <Image className=' lg:w-[25%]' src={bannerImg} alt="banner image"></Image>
+                <Image className='mx-auto lg:mr-0 lg:w-[25%]' src={bannerImg} alt="banner image"></Image>
             </section>
         </section>
     );

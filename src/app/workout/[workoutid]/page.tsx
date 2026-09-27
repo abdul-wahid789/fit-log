@@ -1,11 +1,13 @@
-
 import PlanButton from '@/app/components/workoutdetails/PlanButton';
 import SaveButton from '@/app/components/workoutdetails/SaveButton';
 import WorkData from '@/app/components/workoutdetails/WorkData';
+import { IWorkout } from '@/app/types/workout';
 
 import { getWorkoutDetails } from '@/lib/workout';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
@@ -13,10 +15,29 @@ type WorkOutDetailsProps = {
     params: Promise<{ workoutid: string }>;
 };
 
+export async function generateMetadata({ params }: WorkOutDetailsProps): Promise<Metadata> {
+    const { workoutid } = await params;
+    const { workout, error }: { workout: IWorkout | null; error: string | null } = await getWorkoutDetails(workoutid)
+
+    if (error || !workout) {
+        return notFound();
+    }
+
+    return {
+        title: `${workout.name} - Fit Log`,
+        description: "Fitness activity tracker web app.",
+    };
+}
+
+
 const WorkOutDetails = async ({ params }: WorkOutDetailsProps) => {
 
     const { workoutid } = await params
-    const { workout } = await getWorkoutDetails(workoutid)
+    const { workout, error }: { workout: IWorkout | null; error: string | null } = await getWorkoutDetails(workoutid)
+
+    if (error || !workout) {
+        return notFound();
+    }
 
     return (
         <div className='w-[90%] md:container mx-auto'>

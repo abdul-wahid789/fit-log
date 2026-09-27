@@ -1,6 +1,4 @@
 import { IWorkout } from '@/app/types/workout';
-import { WorkoutContext } from '@/context/WorkoutContext';
-import { getWorkoutDetails } from '@/lib/workout';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

@@ -1,22 +1,16 @@
 import React from 'react';
-import WorkoutCard from '../shared/WorkoutCard';
 import { getWorkouts } from '@/lib/workout';
-import SearchInput from './WorkoutFilter';
-import { WorkoutContext } from '@/context/WorkoutContext';
-import { revalidatePath } from 'next/cache';
 import RetryButton from './RetryButton';
 import WorkoutFilter from './WorkoutFilter';
 
 
 const WorkoutList = async () => {
-
     const { workouts, error } = await getWorkouts();
-
-
     return (
         < >
 
             {
+
                 !error ?
                     <WorkoutFilter workouts={workouts} />
                     :

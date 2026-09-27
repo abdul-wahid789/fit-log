@@ -7,8 +7,10 @@ import { IWorkoutContext } from '../types/workoutContext';
 import Link from 'next/link';
 import PlanListLoading from '../components/loading/my-plan/PlanListLoading';
 
+
+
 const MyPlanPage = () => {
-    const [sortValue, setSortValue] = useState<string>("Duration")
+    const [sortValue, setSortValue] = useState<string>("duration")
     const value = useContext<IWorkoutContext>(WorkoutContext)
 
     const handelTabClick = () => {
@@ -23,13 +25,13 @@ const MyPlanPage = () => {
 
     const sortedWorkouts = [...workouts].sort((a, b) => {
         if (sortValue === "duration") {
-            return a.duration - b.duration;
+            return b.duration - a.duration;
         }
         if (sortValue === "caloriesBurned") {
-            return a.caloriesBurned - b.caloriesBurned;
+            return b.caloriesBurned - a.caloriesBurned;
         }
         if (sortValue === "rating") {
-            return a.rating - b.rating;
+            return b.rating - a.rating;
         }
         return 0;
     });

@@ -1,12 +1,11 @@
 "use client"
 
 import { IWorkout } from '@/app/types/workout';
-import { WorkoutContext } from '@/context/WorkoutContext';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import WorkoutCard from '../shared/WorkoutCard';
 
 const WorkoutFilter = ({ workouts }: { workouts: IWorkout[] }) => {
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState<string>("");
     const handelSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value.toLowerCase())
     }

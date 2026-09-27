@@ -7,7 +7,7 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { MdDone } from 'react-icons/md';
-import { Bounce, toast } from 'react-toastify';
+import { showErrorToast, showSuccessToast } from '../shared/toast/Toast';
 
 const ButtonAction = ({ workout }: { workout: IWorkout }) => {
 
@@ -21,17 +21,9 @@ const ButtonAction = ({ workout }: { workout: IWorkout }) => {
         value.setPlanWorkouts(workouts)
         setPlanLocalData(workouts)
 
-        toast.success(`${workout.name} Done`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: Bounce,
-        });
+        showSuccessToast(`${workout.name} Done`)
+
+
     }
 
     const handelRemove = () => {
@@ -47,17 +39,8 @@ const ButtonAction = ({ workout }: { workout: IWorkout }) => {
             setSaveLocalData(workouts)
         }
 
-        toast.error(`${workout.name} Removed`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            transition: Bounce,
-        });
+        showErrorToast(`${workout.name} Removed`)
+
 
     }
 
