@@ -19,7 +19,7 @@ const WorkoutFilter = ({ workouts }: { workouts: IWorkout[] }) => {
     return (
         <div className='w-[90%] lg:w-full mx-auto '>
             <div className='flex mt-10 w-full lg:-mt-10 items-center justify-end'>
-                <label className="input text-accent border-accent/50">
+                <label className=" w-full input text-accent border-accent/50">
                     <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                             strokeLinejoin="round"
